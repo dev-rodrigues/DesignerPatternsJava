@@ -17,7 +17,7 @@ public class Application {
 
 		while (option != 4) {
 			option = menuService.returnTheSelectedMenu();
-			menuService.performMenuSelection(option, peoples, peopleService, menuService, factory);
+			menuService.performMenuSelection(option, peoples, peopleService, factory);
 		}
 
 	}

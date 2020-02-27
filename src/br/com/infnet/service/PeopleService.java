@@ -8,6 +8,7 @@ import br.com.infnet.model.Teacher;
 import br.com.infnet.util.Utility;
 
 public class PeopleService {
+	
 	public Student createStudent(InputData input, People[] peoples, PeopleFactory factory) {
 		return (Student) factory.create("Student", Utility.returnTheNextIdValid(peoples), input, factory);
 	}

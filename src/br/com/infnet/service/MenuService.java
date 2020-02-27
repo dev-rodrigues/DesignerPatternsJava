@@ -32,16 +32,16 @@ public class MenuService {
 		System.out.println(builder.toString());
 	}
 	
-	public void performMenuSelection(int option, People[] peoples, PeopleService peopleService, MenuService menuService,
+	public void performMenuSelection(int option, People[] peoples, PeopleService peopleService,
 			PeopleFactory factory) {
 		switch (option) {
 		case 1:
-			peoples[Utility.returnTheNextIdValid(peoples)] = peopleService.createTeacher(menuService.returnTheData(), 
+			peoples[Utility.returnTheNextIdValid(peoples)] = peopleService.createTeacher(returnTheData(), 
 					peoples, factory);
 			break;
 			
 		case 2:
-			peoples[Utility.returnTheNextIdValid(peoples)] = peopleService.createStudent(menuService.returnTheData(),
+			peoples[Utility.returnTheNextIdValid(peoples)] = peopleService.createStudent(returnTheData(),
 					peoples, factory);
 			break;
 		
