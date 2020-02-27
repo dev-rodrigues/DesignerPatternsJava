@@ -14,7 +14,7 @@ public class Teacher implements People {
 
 	@Override
 	public void consultarSituacao() {
-		System.out.println("Teacher: " + this.id + " - "+ this.lastName + ","  + this.name);
+		System.out.println("Teacher: " + this.id + " - "+ this.lastName + ", "  + this.name);
 	}
 
 	@Override

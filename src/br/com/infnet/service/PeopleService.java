@@ -28,4 +28,11 @@ public class PeopleService {
 			}
 		}
 	}
+	
+	public People findById(People[] peoples, int id) {
+		if (peoples[id] == null) {
+			return null;
+		}
+		return peoples[id];
+	}
 }

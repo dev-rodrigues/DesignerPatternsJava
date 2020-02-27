@@ -10,9 +10,13 @@ import br.com.infnet.util.Utility;
 public class MenuService {
 
 	protected Scanner sc;
+	protected PeopleService peopleService;
+	protected PeopleFactory factory;
 
 	public MenuService() {
 		this.sc = new Scanner(System.in);
+		peopleService = new PeopleService();
+		factory = new PeopleFactory();
 	}
 
 	private static void skipLines() {
@@ -24,33 +28,52 @@ public class MenuService {
 		StringBuilder builder = new StringBuilder();
 		skipLines();
 
-		builder.append("    MENU                        \n")
+		builder.append("    MENU                         \n")
 				.append("1 - CADASTRO PROFESSOR ---------\n")
 				.append("2 - CADASTRO ALUNO     ---------\n")
-				.append("3 - CONSULTAR          ---------\n");
+				.append("3 - LISTAR TODOS       ---------\n")
+				.append("4 - PESQUISAR POR ID   ---------\n");
 
 		System.out.println(builder.toString());
 	}
-	
-	public void performMenuSelection(int option, People[] peoples, PeopleService peopleService,
-			PeopleFactory factory) {
+
+	public void performMenuSelection(int option, People[] peoples) {
 		switch (option) {
 		case 1:
-			peoples[Utility.returnTheNextIdValid(peoples)] = peopleService.createTeacher(returnTheData(), 
-					peoples, factory);
+			peoples[Utility.returnTheNextIdValid(peoples)] = peopleService.createTeacher(returnTheData(), peoples,
+					factory);
 			break;
-			
+
 		case 2:
-			peoples[Utility.returnTheNextIdValid(peoples)] = peopleService.createStudent(returnTheData(),
-					peoples, factory);
+			peoples[Utility.returnTheNextIdValid(peoples)] = peopleService.createStudent(returnTheData(), peoples,
+					factory);
+			break;
+
+		case 3:
+			peopleService.writePeoples(peoples);
 			break;
 		
-		case 3: 
-			peopleService.writePeoples(peoples);
+		case 4:
+			People p = peopleService.findById(peoples, returnTheIdOfSearching(peoples));
+			p.consultarSituacao();
+			break;
 
 		default:
 			break;
 		}
+	}
+	
+	public int returnTheIdOfSearching(People[] peoples) {
+		 System.out.println("Digite o id do usuario");
+		 String position = sc.nextLine();
+		 int convertedPosition = 0;
+		 
+		 try {
+			 convertedPosition = Integer.parseInt(position);
+		 } catch (Exception e) {
+			 System.out.println("erro ao converter");
+		}
+		 return convertedPosition;	 
 	}
 
 	public Integer returnTheSelectedMenu() {
@@ -84,7 +107,7 @@ public class MenuService {
 	}
 
 	public Integer handlesSelectedOption(int parse) {
-		if (parse < 0 || parse > 3) {
+		if (parse < 0 || parse > 4) {
 			System.out.println("Opcao inválida");
 			return 0;
 		}
