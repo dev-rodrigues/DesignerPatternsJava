@@ -15,11 +15,15 @@ public class PeopleService {
 	public Teacher createTeacher(InputData input, People[] peoples, PeopleFactory factory) {
 		return (Teacher) factory.create("Teacher", Utility.returnTheNextIdValid(peoples), input, factory);
 	}
-	
+
 	public void writePeoples(People[] peoples) {
-		for (People people : peoples) {
-			if(people != null) {
-				people.consultarSituacao();
+		if (peoples[0] == null) {
+			System.out.println("Não existe pessoas cadastradas");
+		} else {
+			for (People people : peoples) {
+				if (people != null) {
+					people.consultarSituacao();
+				}
 			}
 		}
 	}
